@@ -22,7 +22,7 @@ function createFeatures(earthquakeData) {
   // Define a function that we want to run once for each feature in the features array.
   // Give each feature a popup that describes the place and time of the earthquake.
   function onEachFeature(feature, layer) {
-    layer.bindPopup(`<h3>${feature.properties.place}</h3><hr><p>${new Date(feature.properties.mag)}</p><hr><p>${new Date(feature.properties.depth)}</p>`);
+    layer.bindPopup(`<h3>${feature.properties.place}</h3><hr><p>${new Date(feature.properties.mag)}</p><hr><p>${new Date(feature.geometry.coordinates[2])}</p>`);
   }
 
   // Create a GeoJSON layer that contains the features array on the earthquakeData object.
@@ -95,7 +95,7 @@ legend.addTo(myMap);
 
 function createFeatures(eqdata) {
 function onEachFeature(feature, layer) {
-  layer.bindPopup('<h4>Place: ' + feature.properties.place + '</h4><h4>Depth: ' + (feature.properties.depth) + '</h4><h4>:Magnitude ' + feature.properties.mag + '</h4><h4>USGS Event Page: <a href=' + feature.properties.url + " target='_blank'>Click here</a></h4>", {maxWidth: 400})
+  layer.bindPopup('<h4>Place: ' + feature.properties.place + '</h4><h4>Depth: ' + (feature.geometry.coordinates[2]) + '</h4><h4>:Magnitude ' + feature.properties.mag + '</h4><h4>USGS Event Page: <a href=' + feature.properties.url + " target='_blank'>Click here</a></h4>", {maxWidth: 400})
 }
 
 var layerToMap = L.geoJSON(eqdata, {
